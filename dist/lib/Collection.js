@@ -8,6 +8,8 @@ var _Object$keys = require('babel-runtime/core-js/object/keys')['default'];
 
 var _regeneratorRuntime = require('babel-runtime/regenerator')['default'];
 
+var _Object$assign = require('babel-runtime/core-js/object/assign')['default'];
+
 var _Promise = require('babel-runtime/core-js/promise')['default'];
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -90,7 +92,7 @@ var Collection = (function () {
 
           case 2:
             context$2$0.next = 4;
-            return _regeneratorRuntime.awrap(this.runCommand('aggregate', { pipeline: pipeline }));
+            return _regeneratorRuntime.awrap(this.runCommand('aggregate', _Object$assign({ pipeline: pipeline }, options)));
 
           case 4:
             return context$2$0.abrupt('return', context$2$0.sent.result);
@@ -107,11 +109,11 @@ var Collection = (function () {
       if (!Array.isArray(pipeline)) {
         throw new Error('aggregate pipeline must be array!');
       }
-      return new _Cursor2['default'](this, this.fullCollectionName, {
+      return new _Cursor2['default'](this, this.fullCollectionName, _Object$assign({
         aggregate: this.collectionName,
         pipeline: pipeline,
         cursor: { batchSize: 1000 }
-      }, { cursor: { batchSize: 1000 } });
+      }, options), _Object$assign({ cursor: { batchSize: 1000 } }, options));
     }
   }, {
     key: 'count',
